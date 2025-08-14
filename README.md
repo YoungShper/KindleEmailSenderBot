@@ -47,12 +47,8 @@ A Telegram bot that allows users to send documents to their Kindle devices via e
      }
      ```
 
-3. Apply database migrations:
-   ```bash
-   dotnet ef database update --project KindleEmailSenderBot.DataAccess.Postgres
-   ```
 
-4. Run the application:
+3. Run the application:
    ```bash
    dotnet run --project KindleEmailSenderBot.TelegramBot
    ```
@@ -74,9 +70,9 @@ docker-compose up -d
 
 ## Available Commands
 
--`/start` - Start the bot
--`/set_email` - Set your Kindle email
--`/help` - Show this help
--`/stop` - Stop the bot
--`/my_email` - Check your current Email
+- `/start` - Start the bot\n
+- `/set_email` - Set your Kindle email
+- `/help` - Show this help
+- `/stop` - Stop the bot
+- `/my_email` - Check your current Email
 
