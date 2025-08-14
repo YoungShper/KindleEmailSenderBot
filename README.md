@@ -47,7 +47,6 @@ A Telegram bot that allows users to send documents to their Kindle devices via e
      }
      ```
 
-
 3. Run the application:
    ```bash
    dotnet run --project KindleEmailSenderBot.TelegramBot
@@ -56,6 +55,7 @@ A Telegram bot that allows users to send documents to their Kindle devices via e
 ## Docker Support
 
 You can also run the application using Docker:
+- Create `.env` file for database variables
 
 ```bash
 docker-compose up -d
@@ -70,7 +70,7 @@ docker-compose up -d
 
 ## Available Commands
 
-- `/start` - Start the bot\n
+- `/start` - Start the bot
 - `/set_email` - Set your Kindle email
 - `/help` - Show this help
 - `/stop` - Stop the bot
