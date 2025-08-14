@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.TelegramBot", "KindleEmailSenderBot.TelegramBot\KindleEmailSenderBot.TelegramBot.csproj", "{2D8C3B11-26FB-46B3-9269-42DC89BBA0FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.Core", "KindleEmailSenderBot.Core\KindleEmailSenderBot.Core.csproj", "{DED549D9-48B1-48C5-85C9-814095285788}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.Infrastructure", "KindleEmailSenderBot.Infrastructure\KindleEmailSenderBot.Infrastructure.csproj", "{3BE7A14F-C6B9-4AC8-8E9A-1101DACA5462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.App", "KindleEmailSenderBot.App\KindleEmailSenderBot.App.csproj", "{550C0914-C57D-4196-AFF3-B2446E00D657}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.DataAccess.Postgres", "KindleEmailSenderBot.DataAccess.Postgres\KindleEmailSenderBot.DataAccess.Postgres.csproj", "{290C204F-7B97-4906-A60B-92A2BB16B1D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{97542F78-9538-4374-B8FA-90D20FE6C82D}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		.env = .env
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D8C3B11-26FB-46B3-9269-42DC89BBA0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D8C3B11-26FB-46B3-9269-42DC89BBA0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D8C3B11-26FB-46B3-9269-42DC89BBA0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D8C3B11-26FB-46B3-9269-42DC89BBA0FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED549D9-48B1-48C5-85C9-814095285788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED549D9-48B1-48C5-85C9-814095285788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED549D9-48B1-48C5-85C9-814095285788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED549D9-48B1-48C5-85C9-814095285788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BE7A14F-C6B9-4AC8-8E9A-1101DACA5462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BE7A14F-C6B9-4AC8-8E9A-1101DACA5462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BE7A14F-C6B9-4AC8-8E9A-1101DACA5462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BE7A14F-C6B9-4AC8-8E9A-1101DACA5462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{550C0914-C57D-4196-AFF3-B2446E00D657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{550C0914-C57D-4196-AFF3-B2446E00D657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{550C0914-C57D-4196-AFF3-B2446E00D657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{550C0914-C57D-4196-AFF3-B2446E00D657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{290C204F-7B97-4906-A60B-92A2BB16B1D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{290C204F-7B97-4906-A60B-92A2BB16B1D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{290C204F-7B97-4906-A60B-92A2BB16B1D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{290C204F-7B97-4906-A60B-92A2BB16B1D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

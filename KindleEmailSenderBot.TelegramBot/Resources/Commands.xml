@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BotCommands>
+    <Command name="/start">
+        <Description>Initialize the Kindle Telegram Bot and get started</Description>
+        <Response>
+Welcome to the Kindle Telegram Bot! 
+Send me your Kindle email (your_email@kindle.com) to start receiving books directly on your device. 
+
+If you want to use this bot, please add the following email to your Amazon account and make it authorized to send documents: </Response>
+    </Command>
+    <Command name="/set_email">
+        <Description>Set your Kindle email address linked to your Telegram account for sending books</Description>
+        <Response>
+Please send me your Kindle device email address.
+        </Response>
+    </Command>
+    <Command name="/my_email">
+        <Description>Show your current Email address</Description>
+        <Response>Your Email address is: </Response>
+    </Command>
+    <Command name="/help">
+        <Description>Show a list of available commands and how to use the bot</Description>
+        <Response>
+Available commands:
+/start - Start the bot
+/set_email - Set your Kindle email
+/help - Show this help
+/stop - Stop the bot
+/my_email - Check your current Email
+
+If your books aren't being delivered without error messages, make sure you have added bot email to your Amazon account
+and that it is authorized to send documents. This will allow the bot to send books directly to your Kindle.
+bot email: </Response>
+    </Command>
+    <Command name="/stop">
+        <Description>Stop the Kindle Telegram Bot and end the current session</Description>
+        <Response>You have stopped the Kindle Telegram Bot. Send /start to activate it again.</Response>
+    </Command>
+</BotCommands>
