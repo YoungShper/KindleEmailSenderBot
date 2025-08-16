@@ -1,6 +1,5 @@
 ﻿services:
   kindlemailsenderbot:
-    image: kindlemailsenderbot
     build:
       context: .
       dockerfile: KindleEmailSenderBot.TelegramBot/Dockerfile
