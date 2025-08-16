@@ -114,6 +114,7 @@ public class TelegramBotController
     [Message(MessageType = MessageType.Document)]
     public async Task<string> SendFileAsync(Update update)
     {
-        return await _bookBotManagement.DeliverFileAsync(update.Message.Document.FileName, update.Message.Document.FileId, update.Message.Chat.Id);
+        var mail = await _bookBotManagement.DeliverFileAsync(update.Message.Document.FileName, update.Message.Document.FileId, update.Message.Chat.Id);
+        return $"File sent to {mail}";
     }
 }

@@ -1,5 +1,7 @@
 # Kindle Email Sender Bot
 
+**Live Bot:** [@FlibustaKindleBookbot](https://t.me/FlibustaKindleBookbot)
+
 A Telegram bot that allows users to send documents to their Kindle devices via email. The bot handles file uploads and automatically forwards them to your Kindle email address.
 
 ## Features
