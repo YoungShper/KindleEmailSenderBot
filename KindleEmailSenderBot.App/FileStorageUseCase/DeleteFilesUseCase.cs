@@ -4,15 +4,15 @@ namespace KindleEmailSenderBot.App.FileStorageUseCase;
 
 public class DeleteFilesUseCase : IDeleteFilesUseCase
 {
-    IFileStorageService _fileStorageService;
+    IFileDeleteService _fileDeleteService;
 
-    public DeleteFilesUseCase(IFileStorageService fileStorageService)
+    public DeleteFilesUseCase(IFileDeleteService fileDeleteService)
     {
-        _fileStorageService = fileStorageService;
+        _fileDeleteService = fileDeleteService;
     }
 
     public async Task DeleteFilesAsync()
     {
-        await _fileStorageService.DeleteAsync();
+        await _fileDeleteService.DeleteAsync();
     }
 }

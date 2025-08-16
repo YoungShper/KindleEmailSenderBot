@@ -8,13 +8,13 @@ public class BookBotManagementService : IBookBotManagementService
 {
     private readonly IUserRepository _userRepository;
     private readonly IFileDownloadService _fileDownloadService;
-    private readonly ISenderService _senderService;
+    private readonly IFileSenderService _fileSenderService;
 
-    public BookBotManagementService(IUserRepository userRepository, IFileDownloadService fileDownloadService, ISenderService senderService)
+    public BookBotManagementService(IUserRepository userRepository, IFileDownloadService fileDownloadService, IFileSenderService fileSenderService)
     {
         _userRepository = userRepository;
         _fileDownloadService = fileDownloadService;
-        _senderService = senderService;
+        _fileSenderService = fileSenderService;
     }
     public Task NotifyUsersAsync(string message)
     {
@@ -64,7 +64,7 @@ public class BookBotManagementService : IBookBotManagementService
         
         var data = new DownloadContext(fileName, chatId.ToString(), fileId);
         var path = await _fileDownloadService.SaveAsync(data);
-        await _senderService.SendFileAsync(path, user.Email);
+        await _fileSenderService.SendFileAsync(path, user.Email);
         return user.Email;
     }
 

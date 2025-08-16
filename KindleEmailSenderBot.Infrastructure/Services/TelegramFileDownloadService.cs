@@ -6,17 +6,15 @@ using Telegram.Bot;
 
 namespace KindleEmailSenderBot.Infrastructure.Services;
 
-public class TelegramDownloadFileService : IFileDownloadService
+public class TelegramFileDownloadService : IFileDownloadService
 {
-    ILogger<TelegramDownloadFileService> _logger;
     ITelegramBotClient _botClient;
     LocalFileStorageOptions _pathOptions;
     
 
-    public TelegramDownloadFileService(ILogger<TelegramDownloadFileService> logger, 
+    public TelegramFileDownloadService(ILogger<TelegramFileDownloadService> logger, 
         ITelegramBotClient botClient, IOptions<LocalFileStorageOptions> localFileStorageSettings)
     {
-        _logger = logger;
         _botClient = botClient;
         _pathOptions = localFileStorageSettings.Value;
     }
@@ -37,9 +35,9 @@ public class TelegramDownloadFileService : IFileDownloadService
             
         var filePath = Path.Combine(path, context.FileName);
 
-        await using var ms = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+        await using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
 
-        await _botClient.DownloadFile(file, ms);
+        await _botClient.DownloadFile(file, fs);
 
         return filePath;
     }

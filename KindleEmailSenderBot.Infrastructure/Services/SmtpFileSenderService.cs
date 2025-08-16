@@ -6,13 +6,13 @@ using Microsoft.Extensions.Options;
 
 namespace KindleEmailSenderBot.Infrastructure;
 
-public class SmtpSenderService : ISenderService
+public class SmtpFileSenderService : IFileSenderService
 {
-    ILogger<SmtpSenderService> _logger;
+    ILogger<SmtpFileSenderService> _logger;
     SmtpClientFactory _emailClientFactory;
     private string _email;
     
-    public SmtpSenderService(SmtpClientFactory emailClientFactory, ILogger<SmtpSenderService> logger, IOptions<SmtpOptions> smtpOptions)
+    public SmtpFileSenderService(SmtpClientFactory emailClientFactory, ILogger<SmtpFileSenderService> logger, IOptions<SmtpOptions> smtpOptions)
     {
        _logger = logger;
        _emailClientFactory = emailClientFactory;

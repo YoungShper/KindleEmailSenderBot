@@ -2,7 +2,7 @@ using KindleEmailSenderBot.Core.Options;
 
 namespace KindleEmailSenderBot.Core.Interfaces;
 
-public interface IFileStorageService
+public interface IFileDeleteService
 {
     Task DeleteAsync(FileStorageContext? context = null);
 }

@@ -40,8 +40,8 @@ class Program
         builder.Services.AddHostedService<TelegramBotBackgroundService>();
         builder.Services.Configure<LocalFileStorageOptions>(builder.Configuration
             .GetSection(LocalFileStorageOptions.WorkDir));
-        builder.Services.AddScoped<IFileDownloadService, TelegramDownloadFileService>();
-        builder.Services.AddScoped<IFileStorageService, TelegramFileStorageService>();
+        builder.Services.AddScoped<IFileDownloadService, TelegramFileDownloadService>();
+        builder.Services.AddScoped<IFileDeleteService, TelegramFileDeleteService>();
         builder.Services.AddScoped<IDeleteFilesUseCase, DeleteFilesUseCase>();
         builder.Services.AddDbContext<KindleDbContext>(o =>
         {
@@ -50,7 +50,7 @@ class Program
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection(SmtpOptions.Smtp));
         builder.Services.AddSingleton<SmtpClientFactory>();
-        builder.Services.AddScoped<ISenderService, SmtpSenderService>();
+        builder.Services.AddScoped<IFileSenderService, SmtpFileSenderService>();
         builder.Services.AddScoped<IBookBotManagementService, BookBotManagementService>();
         builder.Services.AddScoped<TelegramBotController>();
         builder.Services.AddScoped<TelegramCommandRouterService<TelegramBotController>>();

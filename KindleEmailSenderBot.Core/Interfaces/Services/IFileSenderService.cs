@@ -1,6 +1,6 @@
 namespace KindleEmailSenderBot.Core.Interfaces;
 
-public interface ISenderService
+public interface IFileSenderService
 {
     Task SendFileAsync(string path, string to);
 }
