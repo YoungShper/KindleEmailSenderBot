@@ -4,5 +4,5 @@ namespace KindleEmailSenderBot.Core.Interfaces;
 
 public interface IFileDeleteService
 {
-    Task DeleteAsync(FileStorageContext? context = null);
+    Task DeleteAsync(FileDeleteContext? context = null);
 }

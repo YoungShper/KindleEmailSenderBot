@@ -14,17 +14,29 @@ public class TelegramFileDeleteService : IFileDeleteService
         _pathOptions = localFileStorageSettings.Value;
     }
     
-    public async Task DeleteAsync(FileStorageContext context)
+    public async Task DeleteAsync(FileDeleteContext? context)
     {
         var path = Path.Combine(_pathOptions.Path);
-        var dirs = Directory.GetDirectories(path).ToList();
-        await Parallel.ForEachAsync(dirs, new ParallelOptions  { MaxDegreeOfParallelism = 2}, async (dir, ct) =>
+        
+        if (context is null)
         {
-            await Task.Run(() =>
+            var dirs = Directory.GetDirectories(path).ToList();
+            await Parallel.ForEachAsync(dirs, new ParallelOptions  { MaxDegreeOfParallelism = 2}, async (dir, ct) =>
             {
-                if (Directory.Exists(dir))
-                    Directory.Delete(dir, true);
-            }, ct);
-        });
+                await Task.Run(() =>
+                {
+                    if (Directory.Exists(dir))
+                        Directory.Delete(dir, true);
+                }, ct);
+            });
+        }
+        
+        var concreteDir = Directory.GetDirectories(path).FirstOrDefault(x => x == context.ChatId);
+
+        if (!string.IsNullOrEmpty(concreteDir) && Directory.Exists(Path.Combine(path, concreteDir)))
+        {
+            Directory.Delete(Path.Combine(path, concreteDir), true);
+        }
+
     }
 }
