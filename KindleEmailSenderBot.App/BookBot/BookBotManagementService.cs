@@ -57,7 +57,7 @@ public class BookBotManagementService : IBookBotManagementService
         return await _userRepository.UpdateUserAsync(user);
     }
 
-    public async Task DeliverFileAsync(string fileName, string fileId, long chatId)
+    public async Task<string> DeliverFileAsync(string fileName, string fileId, long chatId)
     {
         var user = await _userRepository.GetUserAsync(chatId);
         
@@ -65,6 +65,7 @@ public class BookBotManagementService : IBookBotManagementService
         var data = new DownloadContext(fileName, chatId.ToString(), fileId);
         var path = await _fileDownloadService.SaveAsync(data);
         await _senderService.SendFileAsync(path, user.Email);
+        return user.Email;
     }
 
     public async Task<bool> CheckUserIsActiveAsync(long chatId)
