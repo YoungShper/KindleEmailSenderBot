@@ -1,22 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.TelegramBot", "KindleEmailSenderBot.TelegramBot\KindleEmailSenderBot.TelegramBot.csproj", "{2D8C3B11-26FB-46B3-9269-42DC89BBA0FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "src\Web\Web.csproj", "{2D8C3B11-26FB-46B3-9269-42DC89BBA0FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.Core", "KindleEmailSenderBot.Core\KindleEmailSenderBot.Core.csproj", "{DED549D9-48B1-48C5-85C9-814095285788}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{DED549D9-48B1-48C5-85C9-814095285788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.Infrastructure", "KindleEmailSenderBot.Infrastructure\KindleEmailSenderBot.Infrastructure.csproj", "{3BE7A14F-C6B9-4AC8-8E9A-1101DACA5462}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{3BE7A14F-C6B9-4AC8-8E9A-1101DACA5462}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.App", "KindleEmailSenderBot.App\KindleEmailSenderBot.App.csproj", "{550C0914-C57D-4196-AFF3-B2446E00D657}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{550C0914-C57D-4196-AFF3-B2446E00D657}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindleEmailSenderBot.DataAccess.Postgres", "KindleEmailSenderBot.DataAccess.Postgres\KindleEmailSenderBot.DataAccess.Postgres.csproj", "{290C204F-7B97-4906-A60B-92A2BB16B1D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "src\Data\Data.csproj", "{290C204F-7B97-4906-A60B-92A2BB16B1D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{97542F78-9538-4374-B8FA-90D20FE6C82D}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 		.gitignore = .gitignore
-		.env = .env
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{95F2F080-D6CA-43F4-9651-5C10D1231721}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{424AF845-0BC6-415B-8FCB-3D63B0F56310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,5 +47,12 @@ Global
 		{290C204F-7B97-4906-A60B-92A2BB16B1D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{290C204F-7B97-4906-A60B-92A2BB16B1D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{290C204F-7B97-4906-A60B-92A2BB16B1D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{550C0914-C57D-4196-AFF3-B2446E00D657} = {95F2F080-D6CA-43F4-9651-5C10D1231721}
+		{DED549D9-48B1-48C5-85C9-814095285788} = {95F2F080-D6CA-43F4-9651-5C10D1231721}
+		{290C204F-7B97-4906-A60B-92A2BB16B1D7} = {95F2F080-D6CA-43F4-9651-5C10D1231721}
+		{3BE7A14F-C6B9-4AC8-8E9A-1101DACA5462} = {95F2F080-D6CA-43F4-9651-5C10D1231721}
+		{2D8C3B11-26FB-46B3-9269-42DC89BBA0FB} = {95F2F080-D6CA-43F4-9651-5C10D1231721}
 	EndGlobalSection
 EndGlobal
