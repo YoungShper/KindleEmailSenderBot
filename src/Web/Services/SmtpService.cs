@@ -7,13 +7,13 @@ using MimeKit;
 
 namespace KindleEmailSenderBot.Web.Services;
 
-public class SmtpFileSenderService : IFileSenderService
+public class SmtpService : ISmtpService
 {
     private readonly SmtpClientFactory emailClientFactory;
     private readonly string email;
-    private readonly ILogger<SmtpFileSenderService> logger;
+    private readonly ILogger<SmtpService> logger;
     
-    public SmtpFileSenderService(SmtpClientFactory emailClientFactory, ILogger<SmtpFileSenderService> logger, IOptions<SmtpOptions> smtpOptions)
+    public SmtpService(SmtpClientFactory emailClientFactory, ILogger<SmtpService> logger, IOptions<SmtpOptions> smtpOptions)
     {
        this.emailClientFactory = emailClientFactory;
        email = smtpOptions.Value.Username;

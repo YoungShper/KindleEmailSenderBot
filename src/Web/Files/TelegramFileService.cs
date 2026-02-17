@@ -3,13 +3,13 @@ using KindleEmailSenderBot.Domain.Options;
 using KindleEmailSenderBot.Infrastructure.Options;
 using Microsoft.Extensions.Options;
 
-namespace KindleEmailSenderBot.Web.File;
+namespace KindleEmailSenderBot.Web.Files;
 
-public class TelegramFileDeleteService : IFileDeleteService
+public class TelegramFileService : IFileService
 {
     TelegramFileDownloadServiceOptions pathOptions;
 
-    public TelegramFileDeleteService(IOptions<TelegramFileDownloadServiceOptions> localFileStorageSettings)
+    public TelegramFileService(IOptions<TelegramFileDownloadServiceOptions> localFileStorageSettings)
     {
         pathOptions = localFileStorageSettings.Value;
     }

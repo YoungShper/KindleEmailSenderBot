@@ -2,7 +2,9 @@ using KindleEmailSenderBot.Domain.Options;
 
 namespace KindleEmailSenderBot.Application.Files;
 
-public interface IFileDeleteService
+public interface IFileService
 {
     Task DeleteAsync(DeleteFileRequest? request = null);
+    Task<string> SaveAsync(DeliverFileRequest fileRequest);
+    Task SendFileAsync(string path, string to);
 }

@@ -1,4 +1,4 @@
-namespace KindleEmailSenderBot.Infrastructure.Options;
+namespace KindleEmailSenderBot.Web.Files;
 
 public class TelegramFileDownloadServiceOptions
 {

@@ -1,11 +1,10 @@
-using KindleEmailSenderBot.Application.Files;
 using KindleEmailSenderBot.Domain.Options;
 using KindleEmailSenderBot.Infrastructure.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
 
-namespace KindleEmailSenderBot.Web.File;
+namespace KindleEmailSenderBot.Web.Files;
 
 public class TelegramFileDownloadService : IFileDownloadService
 {
@@ -22,7 +21,7 @@ public class TelegramFileDownloadService : IFileDownloadService
         this.logger = logger;
     }
 
-    public async Task<string> SaveAsync(DownloadFileRequest fileRequest)
+    public async Task<string> SaveAsync(DeliverFileRequest fileRequest)
     {
         if(fileRequest.FileId == null || fileRequest.ChatId == null || fileRequest.FileName == null) 
             throw new NullReferenceException("Empty context");

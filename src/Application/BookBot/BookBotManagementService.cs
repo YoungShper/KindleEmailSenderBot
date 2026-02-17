@@ -2,20 +2,24 @@ using KindleEmailSenderBot.Application.Accounting;
 using KindleEmailSenderBot.Application.Files;
 using KindleEmailSenderBot.Domain.Models;
 using KindleEmailSenderBot.Domain.Options;
+using KindleEmailSenderBot.Web.Services;
 
 namespace KindleEmailSenderBot.Application.BookBot;
 
 public class BookBotManagementService : IBookBotManagementService
 {
     private readonly IUserRepository userRepository;
-    private readonly IFileDownloadService fileDownloadService;
-    private readonly IFileSenderService fileSenderService;
+    private readonly IFileService fileService;
+    private readonly ISmtpService smtpService;
 
-    public BookBotManagementService(IUserRepository userRepository, IFileDownloadService fileDownloadService, IFileSenderService fileSenderService)
+    public BookBotManagementService(
+        IUserRepository userRepository, 
+        IFileService fileService, 
+        ISmtpService smtpService)
     {
         this.userRepository = userRepository;
-        this.fileDownloadService = fileDownloadService;
-        this.fileSenderService = fileSenderService;
+        this.fileService = fileService;
+        this.smtpService = smtpService;
     }
 
     public async Task<User> GetOrCreateUserAsync(long chatId)
@@ -55,18 +59,18 @@ public class BookBotManagementService : IBookBotManagementService
         await userRepository.UpdateUserAsync(user);
     }
 
-    public async Task<string> DeliverFileAsync(string fileName, string fileId, long chatId)
+    public async Task<string> DeliverFileAsync(DeliverFileRequest request)
     {
-        var user = await userRepository.GetByIdAsync(chatId);
+        var user = await userRepository.GetByIdAsync(request.ChatId);
         
         if (user == null)
         {
             throw new NullReferenceException("Пользователь не найден");
         }
         
-        var data = new DownloadFileRequest(fileName, chatId.ToString(), fileId);
-        var path = await fileDownloadService.SaveAsync(data);
-        await fileSenderService.SendFileAsync(path, user.Email);
+        var data = new DeliverFileRequest(fileName, chatId.ToString(), fileId);
+        var path = await fileService.SaveAsync(data);
+        await smtpService.SendFileAsync(path, user.Email);
         return user.Email;
     }
 
