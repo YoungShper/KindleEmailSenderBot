@@ -1,6 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace KindleEmailSenderBot.Domain.Models;
+namespace KindleEmailSenderBot.Domain.Users;
 
 public class User
 {

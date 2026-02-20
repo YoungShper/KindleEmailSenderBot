@@ -6,5 +6,4 @@ public interface IFileService
 {
     Task DeleteAsync(DeleteFileRequest? request = null);
     Task<string> SaveAsync(DeliverFileRequest fileRequest);
-    Task SendFileAsync(string path, string to);
 }

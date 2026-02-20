@@ -8,22 +8,22 @@ namespace KindleEmailSenderBot.Web.BackgroundServices;
 
 public class TelegramBotBackgroundService : BackgroundService
 {
-    readonly ITelegramBotClient _telegramBotClient;
-    readonly IUpdateHandler _updateHandler;
-    readonly List<BotCommand> _kindleBotCommandList;
+    private readonly ITelegramBotClient telegramBotClient;
+    private readonly IUpdateHandler updateHandler;
+    private readonly List<BotCommand> kindleBotCommandList;
 
     public TelegramBotBackgroundService(ITelegramBotClient telegramBotClient, IUpdateHandler updateHandler, KindleBotCommandProvider kindleBotCommandProvider)
     {
-        _telegramBotClient = telegramBotClient;
-        _updateHandler = updateHandler;
-        _kindleBotCommandList = kindleBotCommandProvider.GetCommands().Select(x => x.BotCommand).ToList();
+        this.telegramBotClient = telegramBotClient;
+        this.updateHandler = updateHandler;
+        kindleBotCommandList = kindleBotCommandProvider.GetCommands().Select(x => x.BotCommand).ToList();
     }
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
         {
-            _telegramBotClient.StartReceiving(_updateHandler, cancellationToken: stoppingToken);
-            await _telegramBotClient.SetMyCommands(_kindleBotCommandList, cancellationToken: stoppingToken);
+            telegramBotClient.StartReceiving(updateHandler, cancellationToken: stoppingToken);
+            await telegramBotClient.SetMyCommands(kindleBotCommandList, cancellationToken: stoppingToken);
         }
         catch (Exception e)
         {

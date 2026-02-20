@@ -7,8 +7,4 @@
         <RootNamespace>KindleEmailSenderBot.Domain</RootNamespace>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Options\" />
-    </ItemGroup>
-
 </Project>

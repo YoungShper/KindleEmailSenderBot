@@ -1,4 +1,4 @@
-using KindleEmailSenderBot.Domain.Models;
+using KindleEmailSenderBot.Domain.Users;
 
 namespace KindleEmailSenderBot.Application.Accounting;
 

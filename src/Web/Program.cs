@@ -1,7 +1,6 @@
 ﻿using KindleEmailSenderBot.Application.Accounting;
 using KindleEmailSenderBot.Application.BookBot;
 using KindleEmailSenderBot.Application.Files;
-using KindleEmailSenderBot.Application.FileStorageUseCase;
 using KindleEmailSenderBot.Data.Context;
 using KindleEmailSenderBot.Data.Repositories;
 using KindleEmailSenderBot.Infrastructure;

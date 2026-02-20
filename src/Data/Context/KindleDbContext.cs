@@ -1,5 +1,5 @@
 using KindleEmailSenderBot.Data.Configurations;
-using KindleEmailSenderBot.Domain.Models;
+using KindleEmailSenderBot.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace KindleEmailSenderBot.Data.Context;

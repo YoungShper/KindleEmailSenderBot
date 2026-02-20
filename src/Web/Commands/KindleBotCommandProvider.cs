@@ -29,8 +29,10 @@ public class KindleBotCommandProvider
         return commands;
     }
     
-    public async Task<string> GetCommandResponseAsync(string input)
+    public string? GetCommandResponseAsync(string input)
     {
-        return await Task.FromResult(GetCommands().FirstOrDefault(x => x.BotCommand.Command == input).Response);
+        return GetCommands()
+            .FirstOrDefault(x => x.BotCommand.Command == input)?
+            .Response;
     }
 }

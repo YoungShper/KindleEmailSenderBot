@@ -1,3 +1,4 @@
+using KindleEmailSenderBot.Application.Files;
 using KindleEmailSenderBot.Domain.Options;
 using KindleEmailSenderBot.Infrastructure.Options;
 using Microsoft.Extensions.Logging;
@@ -6,7 +7,7 @@ using Telegram.Bot;
 
 namespace KindleEmailSenderBot.Web.Files;
 
-public class TelegramFileDownloadService : IFileDownloadService
+public class TelegramFileDownloadService : IFileService
 {
     private readonly ITelegramBotClient botClient;
     private readonly IOptions<TelegramFileDownloadServiceOptions> options;

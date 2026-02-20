@@ -1,7 +1,8 @@
 using KindleEmailSenderBot.Application.Accounting;
 using KindleEmailSenderBot.Application.Files;
-using KindleEmailSenderBot.Domain.Models;
+using KindleEmailSenderBot.Domain;
 using KindleEmailSenderBot.Domain.Options;
+using KindleEmailSenderBot.Domain.Users;
 using KindleEmailSenderBot.Web.Services;
 
 namespace KindleEmailSenderBot.Application.BookBot;
@@ -61,15 +62,17 @@ public class BookBotManagementService : IBookBotManagementService
 
     public async Task<string> DeliverFileAsync(DeliverFileRequest request)
     {
-        var user = await userRepository.GetByIdAsync(request.ChatId);
+        var fileName = ValidationException.ThrowIfNull(request.FileName, "Имя файла должно быть задано");
+        var chatId = ValidationException.ThrowIfNull(request.ChatId, "ChatId должен быть заполнен");
+        
+        var user = await userRepository.GetByIdAsync(chatId);
         
         if (user == null)
         {
-            throw new NullReferenceException("Пользователь не найден");
+            throw new InvalidOperationException("Пользователь не найден");
         }
         
-        var data = new DeliverFileRequest(fileName, chatId.ToString(), fileId);
-        var path = await fileService.SaveAsync(data);
+        var path = await fileService.SaveAsync(request);
         await smtpService.SendFileAsync(path, user.Email);
         return user.Email;
     }

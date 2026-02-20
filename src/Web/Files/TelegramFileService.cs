@@ -37,6 +37,28 @@ public class TelegramFileService : IFileService
         {
             Directory.Delete(Path.Combine(path, concreteDir), true);
         }
+    }
+    
+    public async Task<string> SaveAsync(DeliverFileRequest fileRequest)
+    {
+        if(fileRequest.FileId == null || fileRequest.ChatId == null || fileRequest.FileName == null) 
+            throw new NullReferenceException("Empty context");
+            
+            
+        var file = await botClient.GetFile(fileRequest.FileId);
+            
+        var path = Path.Combine(options.Value.Path, fileRequest.ChatId, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
 
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+            
+            
+        var filePath = Path.Combine(path, fileRequest.FileName);
+
+        await using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+
+        await botClient.DownloadFile(file, fs);
+
+        return filePath;
     }
 }

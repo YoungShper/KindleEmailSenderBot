@@ -1,4 +1,4 @@
-using KindleEmailSenderBot.Domain.Models;
+using KindleEmailSenderBot.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
