@@ -1,5 +1,5 @@
 ﻿using KindleEmailSenderBot.Application.Accounting;
-using KindleEmailSenderBot.Application.BookBot;
+using KindleEmailSenderBot.Application.Chat;
 using KindleEmailSenderBot.Application.Files;
 using KindleEmailSenderBot.Data.Context;
 using KindleEmailSenderBot.Data.Repositories;
@@ -38,17 +38,14 @@ class Program
             return client;
         });
         builder.Services.AddHostedService<TelegramBotBackgroundService>();
-        builder.Services.Configure<FileServiceOptions>(builder.Configuration
-            .GetSection(FileServiceOptions.WorkDir));
-        builder.Services.AddScoped<IFileService, FileService>();
         builder.Services.AddDbContext<KindleDbContext>(o =>
         {
             o.UseNpgsql(configuration.GetConnectionString(nameof(KindleDbContext)));
         });
         builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection(SmtpOptions.Key));
+        builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection(SmtpOptions.ConfigurationKey));
         builder.Services.AddSingleton<SmtpClientFactory>();
-        builder.Services.AddScoped<IBookBotManagementService, BookBotManagementService>();
+        builder.Services.AddScoped<IChatService, ChatService>();
         builder.Services.AddScoped<TelegramBotController>();
         builder.Services.AddScoped<TelegramCommandRouterService<TelegramBotController>>();
         

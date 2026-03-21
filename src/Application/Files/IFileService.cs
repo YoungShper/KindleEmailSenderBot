@@ -1,5 +1,3 @@
-using KindleEmailSenderBot.Domain.Options;
-
 namespace KindleEmailSenderBot.Application.Files;
 
 public interface IFileService

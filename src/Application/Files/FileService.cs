@@ -1,5 +1,4 @@
 using KindleEmailSenderBot.Domain;
-using KindleEmailSenderBot.Domain.Options;
 using Microsoft.Extensions.Options;
 using Telegram.Bot;
 

@@ -1,4 +1,4 @@
-namespace KindleEmailSenderBot.Domain.Options;
+namespace KindleEmailSenderBot.Application.Files;
 
 public record DeliverFileRequest(
     string? FileName, 

@@ -1,9 +1,9 @@
-using KindleEmailSenderBot.Domain.Options;
+using KindleEmailSenderBot.Application.Files;
 using KindleEmailSenderBot.Domain.Users;
 
-namespace KindleEmailSenderBot.Application.BookBot;
+namespace KindleEmailSenderBot.Application.Chat;
 
-public interface IBookBotManagementService
+public interface IChatService
 {
     Task<User> GetOrCreateUserAsync(long chatId);
     Task UpdateEmailAsync(string mail, long chatId);

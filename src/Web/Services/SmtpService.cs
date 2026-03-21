@@ -1,3 +1,4 @@
+using KindleEmailSenderBot.Application.Accounting;
 using KindleEmailSenderBot.Application.Files;
 using KindleEmailSenderBot.Infrastructure;
 using KindleEmailSenderBot.Infrastructure.Options;
@@ -33,7 +34,9 @@ public class SmtpService : ISmtpService
         message.Subject = "Kindle Email Sender Bot";
         message.From.Add(new MailboxAddress("Kindle Email Sender Bot", email));
         message.To.Add(new MailboxAddress("", to));
+        
         var response = await smtpClient.SendAsync(message);
+        
         logger.LogInformation($"Sending message to {to} is {response}");
         await smtpClient.DisconnectAsync(true);
     }

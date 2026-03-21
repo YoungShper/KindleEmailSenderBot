@@ -1,4 +1,4 @@
-namespace KindleEmailSenderBot.Web.Services;
+namespace KindleEmailSenderBot.Application.Accounting;
 
 public interface ISmtpService
 {

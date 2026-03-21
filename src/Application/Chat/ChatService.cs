@@ -1,19 +1,17 @@
 using KindleEmailSenderBot.Application.Accounting;
 using KindleEmailSenderBot.Application.Files;
 using KindleEmailSenderBot.Domain;
-using KindleEmailSenderBot.Domain.Options;
 using KindleEmailSenderBot.Domain.Users;
-using KindleEmailSenderBot.Web.Services;
 
-namespace KindleEmailSenderBot.Application.BookBot;
+namespace KindleEmailSenderBot.Application.Chat;
 
-public class BookBotManagementService : IBookBotManagementService
+internal sealed class ChatService : IChatService
 {
     private readonly IUserRepository userRepository;
     private readonly IFileService fileService;
     private readonly ISmtpService smtpService;
 
-    public BookBotManagementService(
+    public ChatService(
         IUserRepository userRepository, 
         IFileService fileService, 
         ISmtpService smtpService)
@@ -27,16 +25,15 @@ public class BookBotManagementService : IBookBotManagementService
     {
         var user = await userRepository.GetByIdAsync(chatId);
 
-        if (user == null)
+        if (user is null)
         {
             user = new User(string.Empty, chatId, true);
             await userRepository.AddAsync(user);
         }
-        else
-        {
-            user.ChangeActivity(true);
-            await userRepository.UpdateAsync(user);
-        }
+       
+        
+        user.ChangeActivity(true);
+        await userRepository.UpdateAsync(user);
 
         return user;
     }
@@ -62,7 +59,7 @@ public class BookBotManagementService : IBookBotManagementService
 
     public async Task<string> DeliverFileAsync(DeliverFileRequest request)
     {
-        var fileName = ValidationException.ThrowIfNull(request.FileName, "Имя файла должно быть задано");
+        ValidationException.ThrowIfNull(request.FileName, "Имя файла должно быть задано");
         var chatId = ValidationException.ThrowIfNull(request.ChatId, "ChatId должен быть заполнен");
         
         var user = await userRepository.GetByIdAsync(chatId);
