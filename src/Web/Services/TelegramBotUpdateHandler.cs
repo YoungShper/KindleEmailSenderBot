@@ -26,7 +26,7 @@ public class TelegramBotUpdateHandler : IUpdateHandler
         
         if (update.Type == UpdateType.Message && update.Message != null)
         {
-            if(update.Message.Type == MessageType.Text) update.Message.Text = update.Message.Text.Trim();
+            if(update.Message.Type == MessageType.Text) update.Message.Text = update.Message.Text?.Trim();
             
             
             var response = await router.Navigate(update);

@@ -9,7 +9,7 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
 namespace KindleEmailSenderBot.Web.Controllers;
-
+// TODO: Удалить этот кал, перенести в handler логику
 public class TelegramBotController
 {
     IBookBotManagementService bookBotManagement;

@@ -6,23 +6,24 @@ using Microsoft.Extensions.Options;
 
 namespace KindleEmailSenderBot.Infrastructure;
 
+// TODO: это должен быть синглтон, какая фабрика клиентов? Шиза!
 public class SmtpClientFactory
 {
-    private ILogger<SmtpClientFactory> _logger;
-    private readonly SmtpOptions _smtpOptions;
+    private ILogger<SmtpClientFactory> logger;
+    private readonly SmtpOptions smtpOptions;
     public SmtpClientFactory(IOptions<SmtpOptions> smtpSettings, ILogger<SmtpClientFactory> logger)
     {
-        _smtpOptions = smtpSettings.Value;
-        _logger = logger;
+        smtpOptions = smtpSettings.Value;
+        this.logger = logger;
     }
     
     public async Task<ISmtpClient> CreateAsync()
     {
         var client = new SmtpClient();
         client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-        await client.ConnectAsync(_smtpOptions.Server, _smtpOptions.Port, SecureSocketOptions.SslOnConnect);
-        await client.AuthenticateAsync(_smtpOptions.Username, _smtpOptions.Password);
-        _logger.LogInformation(message:"Connected to smtp server");
+        await client.ConnectAsync(smtpOptions.Server, smtpOptions.Port, SecureSocketOptions.SslOnConnect);
+        await client.AuthenticateAsync(smtpOptions.Username, smtpOptions.Password);
+        logger.LogInformation(message:"Connected to smtp server");
         return client;
     }
 }

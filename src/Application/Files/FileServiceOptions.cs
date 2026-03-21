@@ -1,6 +1,6 @@
-namespace KindleEmailSenderBot.Web.Files;
+namespace KindleEmailSenderBot.Application.Files;
 
-public class TelegramFileDownloadServiceOptions
+public class FileServiceOptions
 {
     public const string WorkDir = "WorkDir";
     public string Path { get; set; } = string.Empty;

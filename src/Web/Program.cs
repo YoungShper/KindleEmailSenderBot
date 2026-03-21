@@ -8,7 +8,6 @@ using KindleEmailSenderBot.Infrastructure.Options;
 using KindleEmailSenderBot.Web.BackgroundServices;
 using KindleEmailSenderBot.Web.Commands;
 using KindleEmailSenderBot.Web.Controllers;
-using KindleEmailSenderBot.Web.Files;
 using KindleEmailSenderBot.Web.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -39,15 +38,15 @@ class Program
             return client;
         });
         builder.Services.AddHostedService<TelegramBotBackgroundService>();
-        builder.Services.Configure<TelegramFileDownloadServiceOptions>(builder.Configuration
-            .GetSection(TelegramFileDownloadServiceOptions.WorkDir));
-        builder.Services.AddScoped<IFileService, TelegramFileService>();
+        builder.Services.Configure<FileServiceOptions>(builder.Configuration
+            .GetSection(FileServiceOptions.WorkDir));
+        builder.Services.AddScoped<IFileService, FileService>();
         builder.Services.AddDbContext<KindleDbContext>(o =>
         {
             o.UseNpgsql(configuration.GetConnectionString(nameof(KindleDbContext)));
         });
         builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection(SmtpOptions.Smtp));
+        builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection(SmtpOptions.Key));
         builder.Services.AddSingleton<SmtpClientFactory>();
         builder.Services.AddScoped<IBookBotManagementService, BookBotManagementService>();
         builder.Services.AddScoped<TelegramBotController>();

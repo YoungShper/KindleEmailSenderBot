@@ -1,4 +1,4 @@
-using KindleEmailSenderBot.Application.FileStorageUseCase;
+using KindleEmailSenderBot.Application.Files;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -13,17 +13,15 @@ public class DeleteBackgroundService : BackgroundService
         this.serviceProvider = serviceProvider;
     }
 
-    protected async override Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
-        while (!stoppingToken.IsCancellationRequested)
+        while (!cancellationToken.IsCancellationRequested)
         {
-            var now = DateTime.UtcNow;
-            if (now.Hour == 23 && now.Minute == 59 && now.Second == 59)
-            {
-                using var scope = serviceProvider.CreateScope();
-                var deleteFilesUseCase = scope.ServiceProvider.GetRequiredService<IDeleteFilesUseCase>();
-                await deleteFilesUseCase.DeleteFilesAsync();
-            }
+            using var scope = serviceProvider.CreateScope();
+            var deleteFilesUseCase = scope.ServiceProvider.GetRequiredService<IFileService>();
+            await deleteFilesUseCase.DeleteAllAsync();
+            
+            await Task.Delay(TimeSpan.FromHours(24), cancellationToken);
         }
     }
 }
