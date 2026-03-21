@@ -16,18 +16,19 @@ public class UserRepository : IUserRepository
 
     public async Task<User?> GetByIdAsync(long chatId)
     {
-       var user = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.ChatId == chatId);
+       var user = await context.Users.AsNoTracking()
+           .FirstOrDefaultAsync(x => x.ChatId == chatId);
        return user;
     }
 
-    public async Task<bool> AddUserAsync(User user)
+    public async Task<bool> AddAsync(User user)
     {
         await context.Users.AddAsync(user);
         var result = await context.SaveChangesAsync();
         return result > 0;
     }
 
-    public async Task UpdateUserAsync(User user)
+    public async Task UpdateAsync(User user)
     {
         context.Update(user);
         await context.SaveChangesAsync();

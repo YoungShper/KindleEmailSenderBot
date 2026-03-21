@@ -30,12 +30,12 @@ public class BookBotManagementService : IBookBotManagementService
         if (user == null)
         {
             user = new User(string.Empty, chatId, true);
-            await userRepository.AddUserAsync(user);
+            await userRepository.AddAsync(user);
         }
         else
         {
             user.ChangeActivity(true);
-            await userRepository.UpdateUserAsync(user);
+            await userRepository.UpdateAsync(user);
         }
 
         return user;
@@ -51,13 +51,13 @@ public class BookBotManagementService : IBookBotManagementService
         }
         
         user.SetEmail(mail);
-        await userRepository.UpdateUserAsync(user);
+        await userRepository.UpdateAsync(user);
     }
     public async Task UpdateActivityAsync(bool activity, long chatId)
     {
         var user = await userRepository.GetByIdAsync(chatId);
         user.ChangeActivity(activity);
-        await userRepository.UpdateUserAsync(user);
+        await userRepository.UpdateAsync(user);
     }
 
     public async Task<string> DeliverFileAsync(DeliverFileRequest request)
